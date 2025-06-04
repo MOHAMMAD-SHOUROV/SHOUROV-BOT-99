@@ -34,7 +34,7 @@ module.exports = {
       const categories = {};
       let msg = "";
 
-      msg += `╔═════▓࿇࿇▓═════╗\n             𝐀𝐋𝐋 𝐂𝐌𝐃 𝐋𝐈𝐒𝐓 𝗜𝗡 𝗠𝗔𝗛𝗔𝗕𝗨𝗕-𝗕𝗢𝗧\n╚═════▓࿇࿇▓═════╝\n\n`;
+      msg += `╔═════▓࿇࿇▓═════╗\n             𝐀𝐋𝐋 𝐂𝐌𝐃 𝐋𝐈𝐒𝐓 𝗜𝗡 𝐊𝐈𝐍𝐆 𝐒𝐇𝐎𝐔𝐑𝐎𝐕-𝗕𝗢𝗧\n╚═════▓࿇࿇▓═════╝\n\n`;
 
       for (const [name, value] of commands) {
         if (value.config.role > 1 && role < value.config.role) continue;
@@ -57,7 +57,7 @@ module.exports = {
       const totalCommands = commands.size;
       msg += `\n𝗧𝗢𝗧𝗔𝗟 𝙲𝚖𝚍 ${totalCommands}\n𝚌𝚘𝚖𝚖𝚊𝚗𝚍𝚜 𝚢𝚘𝚞 𝚌𝚊𝚗 𝚞𝚜𝚎 𝙼𝚊𝚑𝚊𝚋𝚞𝚋-𝙱𝚘𝚝 -`;
       msg += `𝚝𝚢𝚙𝚎: 「${prefix} 𝗵𝗲𝗹𝗽」+「 𝐇𝐄𝐋𝐏 𝐂𝐌𝐃」𝚝𝚘 𝚟𝚒𝚎𝚠 𝚍𝚎𝚝𝚊𝚒𝚕𝚜 𝚘𝚏 𝚌𝚘𝚖𝚖𝚊𝚗𝚍𝚜\n`;
-      msg += `👑 | 𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐔𝐒𝐈𝐍𝐆 𝗠𝗔𝗛𝗔𝗕𝗨𝗕-𝐁𝐎𝐓 𝐖𝐄'𝐋𝐋 𝐂𝐎𝐌𝐄 𝐖𝐈𝐓𝐇 𝐍𝐄𝐖 𝐔𝐏𝐃𝐀𝐓𝐄 𝐄𝐕𝐄𝐑𝐘 𝐖𝐄𝐄𝐊`;
+      msg += `👑 | 𝐓𝐇𝐀𝐍𝐊𝐒 𝐅𝐎𝐑 𝐔𝐒𝐈𝐍𝐆 𝐊𝐈𝐍𝐆 𝐒𝐇𝐎𝐔𝐑𝐎𝐕-𝐁𝐎𝐓 𝐖𝐄'𝐋𝐋 𝐂𝐎𝐌𝐄 𝐖𝐈𝐓𝐇 𝐍𝐄𝐖 𝐔𝐏𝐃𝐀𝐓𝐄 𝐄𝐕𝐄𝐑𝐘 𝐖𝐄𝐄𝐊`;
 
       // Get video from API
       const res = await axios.get("https://mahabub-apis.vercel.app/help");
@@ -85,7 +85,7 @@ module.exports = {
           .replace(/{n}/g, configCommand.name)
           .replace(/{pn}/g, prefix + configCommand.name);
 
-        const response = `╭── 𝐍𝐀𝐌𝐄 𝐎𝐖𝐍𝐄𝐑 - 𝗠𝗔𝗛𝗔𝗕𝗨𝗕 𝗥𝗔𝗛𝗠𝗔𝗡 ────⭓
+        const response = `╭── 𝐍𝐀𝐌𝐄 𝐎𝐖𝐍𝐄𝐑 - 𝐊𝐈𝐍𝐆 𝐒𝐇𝐎𝐔𝐑𝐎𝐕 ────⭓
   │ ${configCommand.name}
   ├── INFO
   │ Description: ${longDescription}
@@ -98,7 +98,7 @@ module.exports = {
   │ ${usage}
   ├── Notes
   │ THIS BOT HAS BEEN MADE BY MR᭄﹅ MAHABUB﹅ メꪜ
-  │ FOR ANY HELP YOU CAN CONTACT OWNER: https://www.facebook.com/www.xnxx.com140
+  │ FOR ANY HELP YOU CAN CONTACT OWNER: https://www.facebook.com/www.xsxx.com365
   ╰━━━━━━━❖`;
 
         await message.reply(response);
