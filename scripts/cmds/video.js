@@ -22,13 +22,11 @@ async function getAPIUrl() {
   try {
     console.log("🔄 Fetching API URL from JSON...");
     const response = await axios.get('https://raw.githubusercontent.com/MR-MAHABUB-004/MAHABUB-BOT-STORAGE/refs/heads/main/APIURL.json');
-    console.log("✅ Successfully fetched API URL JSON:", response.data); // Debug log
+    console.log("✅ Successfully fetched API URL JSON:", response.data);
 
-    // Ensure the response contains the expected 'YouTube' field
     if (response.data && response.data.YouTube) {
       return response.data.YouTube;
     } else {
-      console.error("❌ YouTube field not found in the JSON.");
       throw new Error("YouTube field not found in the JSON.");
     }
   } catch (error) {
@@ -80,20 +78,14 @@ module.exports = {
       const safeTitle = topResult.title.replace(/[^a-zA-Z0-9]/g, "_");
       const downloadPath = path.join(downloadDir, `${safeTitle}.mp4`);
 
-      // Fetch API URL from the external JSON file
       const apiUrl = await getAPIUrl();
-      console.log("✅ Using API URL:", apiUrl); // Debug log
-      if (!apiUrl) {
-        throw new Error("No API URL found for YouTube.");
-      }
-
-      const downloadApiUrl = `${apiUrl}/video?url=${encodeURIComponent(videoUrl)}`;
+      const downloadApiUrl = `${apiUrl}/ytmp4?url=${encodeURIComponent(videoUrl)}`;
       let fileDownloaded = false;
 
       try {
-        const downloadResponse = await axios.get(downloadApiUrl);
-        if (downloadResponse.data.file_url) {
-          const downloadUrl = downloadResponse.data.file_url.replace("http:", "https:");
+        const { data } = await axios.get(downloadApiUrl);
+        if (data && data.download && data.download.url) {
+          const downloadUrl = data.download.url.replace("http:", "https:");
           const file = fs.createWriteStream(downloadPath);
 
           await new Promise((resolve, reject) => {
@@ -111,13 +103,12 @@ module.exports = {
           });
         }
       } catch (apiError) {
-        console.error("❌ API failed:", apiError.message);
+        console.error("❌ API error:", apiError.message);
       }
 
       if (!fileDownloaded) {
         console.log("⚠️ Video download failed.");
-        api.sendMessage(`❌ Failed to download the video for: ${videoName}`, event.threadID, event.messageID);
-        return;
+        return api.sendMessage(`❌ Failed to download the video: ${videoName}`, event.threadID, event.messageID);
       }
 
       api.setMessageReaction("✅", event.messageID, () => {}, true);
@@ -131,7 +122,7 @@ module.exports = {
         event.messageID
       );
 
-      deleteAfterTimeout(downloadPath, 15000);
+      deleteAfterTimeout(downloadPath);
     } catch (error) {
       console.error(`❌ Error: ${error.message}`);
       api.sendMessage(`❌ Failed: ${error.message}`, event.threadID, event.messageID);
