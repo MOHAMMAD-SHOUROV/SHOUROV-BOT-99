@@ -46,7 +46,7 @@ react.includes("SawYa") ||
 react.includes("Sawya") || 
 react.includes("tor mare xudi") || react.includes("vuda") || react.includes("heda") || react.includes("bap")) {
 		var msg = {
-				body: "╰┈➤ এখানে গালাগালি করলে মুখ সেলাই কইরা দিমু..!!😾"
+				body: "╰┈➤ এখানে গালাগালি করলে মুখ সেলাই কইরা দিমু..!!😾 গালাগালি করার অনেক ইচ্ছে থাকলে বস সৌরভ এর ইনবক্সে জাও"
 			}
 			api.sendMessage(msg, threadID, messageID);
     api.setMessageReaction("😠", event.messageID, (err) => {}, true)
