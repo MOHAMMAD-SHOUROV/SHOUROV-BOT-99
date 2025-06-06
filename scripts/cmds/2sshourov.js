@@ -6,8 +6,8 @@ module.exports.config = {
   name: "emojiVideo",
   version: "1.0.1",
   hasPermission: 0,
-  credits: "Modified by ChatGPT & Shourov",
-  description: "Send a random video when emoji is sent",
+  credits: "Modified by ChatGPT",
+  description: "Send a video if emoji is sent",
   commandCategory: "media",
   usages: "[emoji]",
   cooldowns: 5
@@ -15,33 +15,15 @@ module.exports.config = {
 
 module.exports.handleEvent = async ({ api, event }) => {
   const allowedEmojis = [
-    "😀","😃","😄","😁","😆","😅","🤣","😂","🙂","🙃","😉","😊","😇","🥰","😍","🤩","😘","😗","☺️","😚","😙",
-    "😋","😛","😜","🤪","😝","🤑","🤗","🤭","🫢","🫣","🤫","🤔","🫡","🤐","🤨","😐","😑","😶","🫥","😶‍🌫️","😏",
-    "😒","🙄","😬","😮‍💨","🤥","😌","😔","😪","🤤","😴","😷","🤒","🤕","🤢","🤮","🤧","🥶","🥴","😵","😵‍💫",
-    "🤯","🤠","🥳","🥸","😎","🤓","🧐","😕","🫤","😟","🙁","☹️","😮","😯","😲","😳","🥺","🥹","😦","😧",
-    "😨","😰","😱","😖","😣","😞","😓","😩","😫","🥱","😤","😡","😠","💀","☠️","💩","🤡","👹","👺","👻","👽",
-    "👾","🤖","😺","😸","😹","😻","😼","😽","🙀","😿","🙈","🙉","🙊","💋","💌","💘","💝","💖","💗","💓","💕",
-    "❣️","💔","❤️‍🔥","❤️‍🩹","❤️","🧡","💛","💚","💯","💢","💥","💫","💦","💨","✊"
+    "ðŸ˜€","ðŸ˜ƒ","ðŸ˜„","ðŸ˜","ðŸ˜†","ðŸ˜…","ðŸ¤£","ðŸ˜‚","ðŸ™‚","ðŸ™ƒ","ðŸ˜‰","ðŸ˜Š","ðŸ˜‡","ðŸ¥°","ðŸ˜","ðŸ¤©","ðŸ˜˜","ðŸ˜—","â˜ºï¸","ðŸ˜š","ðŸ˜™"
   ];
 
   const message = event.body.trim();
   if (!allowedEmojis.includes(message)) return;
 
-  const videoIds = [
-    "1FYLpzM2b9KbrOuZoi5k1wKnXjGcBRlXX",
-    "1FX8S7agOjoIWnDH01l8cS2-TPIwpfOqI",
-    "1Fw5cPHvT-wnrSuO1ap6KEJl_2NGuGpE8",
-    "1FTqJH6IORfcX2xHWqaPnPKzCa6TuuiPV",
-    "1FmH5aTnARtqZTryA97OiUlCfFYObcEYP",
-    "1FQBiObk515JFq5FWyUEOxhvETdUOIksa",
-    "1FeojyFT1EPAl7xZcROHJ_uu7IviNG4Lc",
-    "1FlnhvrlgRVpQeqHUfFJKtFCmFCcEuEso",
-    "1FL4yaE1we0qY-lX-bgud-dvql306Dwf2"
-  ];
-
-  const randomId = videoIds[Math.floor(Math.random() * videoIds.length)];
-  const videoUrl = `https://drive.google.com/uc?export=download&id=${randomId}`;
-  const filePath = path.join(__dirname, "temp_emoji_video.mp4");
+  const videoId = "1FEWwlnA_hKaiPHFW9Wc33b0il9bfRygU";
+  const videoUrl = `https://drive.google.com/uc?export=download&id=${videoId}`;
+  const filePath = path.join(__dirname, "emoji_video.mp4");
 
   try {
     const response = await axios({
@@ -56,7 +38,7 @@ module.exports.handleEvent = async ({ api, event }) => {
     writer.on("finish", () => {
       api.sendMessage(
         {
-          body: "সবই সুন্দর আমি ছাড়া 💔-𝐊𝐢𝐧𝐠_𝐒𝐡𝐨𝐮𝐫𝐨𝐯",
+          body: "ðŸŽ¬ à¦à¦‡ à¦¨à¦¿à¦¨ à¦†à¦ªà¦¨à¦¾à¦° à¦­à¦¿à¦¡à¦¿à¦“:",
           attachment: fs.createReadStream(filePath)
         },
         event.threadID,
@@ -66,11 +48,11 @@ module.exports.handleEvent = async ({ api, event }) => {
     });
 
     writer.on("error", () => {
-      api.sendMessage("⚠️ ভিডিও ডাউনলোড করতে সমস্যা হয়েছে!", event.threadID);
+      api.sendMessage("âš ï¸ à¦­à¦¿à¦¡à¦¿à¦“ à¦ªà¦¾à¦ à¦¾à¦¤à§‡ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!", event.threadID);
     });
 
   } catch (error) {
-    api.sendMessage("❌ ভিডিও পাঠাতে সমস্যা হয়েছে!", event.threadID);
+    api.sendMessage("âŒ à¦­à¦¿à¦¡à¦¿à¦“ à¦¡à¦¾à¦‰à¦¨à¦²à§‹à¦¡ à¦•à¦°à¦¤à§‡ à¦¸à¦®à¦¸à§à¦¯à¦¾ à¦¹à§Ÿà§‡à¦›à§‡!", event.threadID);
     console.error(error);
   }
 };
