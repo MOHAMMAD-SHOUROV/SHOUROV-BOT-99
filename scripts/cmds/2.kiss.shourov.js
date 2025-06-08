@@ -1,4 +1,4 @@
-/cmd install k.js const Jimp = require("jimp");
+const Jimp = require("jimp");
 
 const fs = require("fs-extra");
 
